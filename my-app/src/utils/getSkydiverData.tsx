@@ -9,7 +9,7 @@ export const getSkydiverData = ({ horizontalStartingPoint, verticalSpeed, windSp
     const skydiverDataset = [];
     let currentHorizontalDistance = horizontalStartingPoint
 
-    for (let freefallDistance = 0; freefallDistance < 3000;) {
+    for (let freefallDistance = 0; freefallDistance < 3500;) {
         const currentHeight = 4000 - freefallDistance;
         skydiverDataset.push({ x: currentHorizontalDistance, y: currentHeight })
         freefallDistance += 10 * verticalSpeed;

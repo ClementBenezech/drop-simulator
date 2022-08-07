@@ -1,7 +1,4 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
-import ReactSlider from 'react-slider'
-import { faPen } from "@fortawesome/free-solid-svg-icons";
 import * as React from "react";
 import * as S from "./InputWithLabel.style"
 
@@ -13,6 +10,7 @@ export type InputWithLabelProps = {
     max: number,
     unit: string,
     onChange: (value: string) => void;
+
 
 
 }

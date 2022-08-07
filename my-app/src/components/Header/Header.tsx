@@ -21,31 +21,27 @@ export const Header = () => {
 
             <InputWithLabel min={1} max={20} unit="" icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
             <InputWithLabel min={0} max={50} unit="Secs" icon={faClockFour} label="Temps entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
-            <InputWithLabel min={0} max={50} unit="m/s" icon={faGaugeHigh} label="Vitesse Air de l'avions" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
+            <InputWithLabel min={0} max={50} unit="m/s" icon={faGaugeHigh} label="Vitesse air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
             <InputWithLabel min={0} max={50} unit="m/s" icon={faWind} label="Vitesse du vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
 
         </S.InputsContainer>
         <S.ComputedDataContainer>
             <S.StyledKeyInfoContainer>
                 <S.StyledKeyInfoIcon icon={faPlane} />
-                <S.StyledKeyInfoIcon icon={faGaugeHigh} />
-                <S.StyledKeyInfoIcon icon={faEarthEurope} />
-                <div style={{ display: "flex", flexWrap: "wrap", width: "70%", alignItems: "center" }}>
-                    <S.StyledKeyInfoLabel>{`Vitesse sol de l'avion: `}</S.StyledKeyInfoLabel>
+                <S.StyledKeyValueLabelContainer>
+                    <S.StyledKeyInfoLabel>{`V/sol-Avion: `}</S.StyledKeyInfoLabel>
                     <S.StyledKeyInfoValue>{`${groundSpeedDuringDrop} m/s`}</S.StyledKeyInfoValue>
-                </div>
+                </S.StyledKeyValueLabelContainer>
             </S.StyledKeyInfoContainer>
             <S.StyledKeyInfoContainer>
-                <S.StyledKeyInfoIcon icon={faPerson} />
                 <S.StyledKeyInfoIcon icon={faArrowsLeftRight} />
-                <S.StyledKeyInfoIcon icon={faPerson} />
-                <div style={{ display: "flex", flexWrap: "wrap", width: "70%", alignItems: "center" }}>
-                    <S.StyledKeyInfoLabel>{`Distance entre 2 départs:`}</S.StyledKeyInfoLabel>
+                <S.StyledKeyValueLabelContainer>
+                    <S.StyledKeyInfoLabel>{`Espacement:`}</S.StyledKeyInfoLabel>
                     {horizontalSeparationDistanceIsTooShort ?
                         <S.StyledKeyInfoValue style={{ color: "red" }}>{` ${horizontalSeparationDistance}  mètres`}</S.StyledKeyInfoValue> :
                         <S.StyledKeyInfoValue >{` ${horizontalSeparationDistance} mètres`}</S.StyledKeyInfoValue>
                     }
-                </div>
+                </S.StyledKeyValueLabelContainer>
                 {horizontalSeparationDistanceIsTooShort && !horizontalSeparationDistanceIsFreakingDangerous &&
                     < S.StyledAlertIcon icon={faExclamationTriangle} />
                 }
@@ -58,14 +54,11 @@ export const Header = () => {
 
             </S.StyledKeyInfoContainer>
             <S.StyledKeyInfoContainer>
-
-                <S.StyledKeyInfoIcon icon={faDoorOpen} />
-                <S.StyledKeyInfoIcon icon={faArrowsLeftRight} />
                 <S.StyledKeyInfoIcon icon={faFlagCheckered} />
-                <div style={{ display: "flex", flexWrap: "wrap", width: "70%", alignItems: "center" }}>
-                    <S.StyledKeyInfoLabel>{`Distance sol parcourue sur axe:`}</S.StyledKeyInfoLabel>
+                <S.StyledKeyValueLabelContainer>
+                    <S.StyledKeyInfoLabel>{`Longueur Axe:`}</S.StyledKeyInfoLabel>
                     <S.StyledKeyInfoValue>{`${TotalRunDistance} mètres`}</S.StyledKeyInfoValue>
-                </div>
+                </S.StyledKeyValueLabelContainer>
                 {horizontalRunDistanceIsLong &&
                     <S.StyledAlertIcon icon={faExclamationTriangle} />
                 }
