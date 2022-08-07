@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { AppGlobalContext } from "../../App"
 import InputWithLabel from "../InputWithLabel/InputWithLabel"
 import * as S from "./Header.style"
-import { faPeopleGroup, faClockFour, faGaugeHigh, faWind, faPen, faArrowsLeftRight, faExclamationTriangle, faPerson, faFlagCheckered, faDoorOpen, faSkull, faCheck, faPlane, faEarthEurope, faParachuteBox } from '@fortawesome/free-solid-svg-icons'
+import { faPeopleGroup, faClockFour, faGaugeHigh, faWind, faArrowsLeftRight, faExclamationTriangle, faFlagCheckered, faSkull, faCheck, faPlane, faParachuteBox } from '@fortawesome/free-solid-svg-icons'
 
 export const Header = () => {
     const AppContext = useContext(AppGlobalContext)
@@ -17,11 +17,12 @@ export const Header = () => {
 
     return <S.HeaderContainer>
         <S.StyledLogo icon={faParachuteBox} />
+        <S.StyledTextLogo>EXITS</S.StyledTextLogo>
         <S.InputsContainer>
 
             <InputWithLabel min={1} max={20} unit="" icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
             <InputWithLabel min={0} max={50} unit="Secs" icon={faClockFour} label="Temps entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
-            <InputWithLabel min={0} max={50} unit="m/s" icon={faGaugeHigh} label="Vitesse air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
+            <InputWithLabel min={30} max={60} unit="m/s" icon={faGaugeHigh} label="Vitesse air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
             <InputWithLabel min={0} max={50} unit="m/s" icon={faWind} label="Vitesse du vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
 
         </S.InputsContainer>
@@ -63,6 +64,14 @@ export const Header = () => {
                     <S.StyledAlertIcon icon={faExclamationTriangle} />
                 }
             </S.StyledKeyInfoContainer>
+        </S.ComputedDataContainer>
+        <S.ComputedDataContainer>
+            {horizontalSeparationDistanceIsTooShort &&
+                <S.StyledAlertMessage>La distance entre les parachutistes n'est pas suffisante. On vise un espacement de 250/300m à la sortie d'avion. Il faudrait peut être augmenter le temps entre les départs.</S.StyledAlertMessage>
+            }
+            {horizontalRunDistanceIsLong &&
+                <S.StyledAlertMessage>La distance par rapport au sol parcourue pendant le larguage est élevée. Ce n'est pas nécéssairement un problème en fonction de la configuration de la zone de saut. On peut eventuellement diviser le largage en 2 passages.  </S.StyledAlertMessage>
+            }
         </S.ComputedDataContainer>
     </S.HeaderContainer >
 

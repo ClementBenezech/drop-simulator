@@ -13,7 +13,7 @@ export const StyledInput = styled.input`
   
     @media ${devices.mobile} {
         position:absolute;
-        top:20px;
+        top:26px;
         left:64px;
         max-width: 45vw;
     }
@@ -25,12 +25,12 @@ export const StyledIcon = styled(FontAwesomeIcon)`
     margin: 0 4px;
     margin-right: 0px;
     box-sizing: border-box;
+    height: 30px;
+        width: 30px;
+        padding: 8px;
     @media ${devices.mobile} {
         font-size: 20px;
         background: #fefefe;
-        height: 30px;
-        width: 30px;
-        padding: 8px;
         border-radius: 50%;
         box-shadow: 2px 2Px 8Px #d2d2d2;
     }
@@ -46,14 +46,15 @@ export const StyledEditIcon = styled(FontAwesomeIcon)`
 
 export const StyledLabel = styled.label`
     font-size: 16px;
+    color: #2a2a2ad6;
     margin-right: 10px;
     width: 80%;
     text-align: left;
     @media ${devices.mobile} {
         font-size: 14px;
         position:absolute;
-        top:4px;
-        left:18%;
+        top:8px;
+        left:19%;
         width: 58%;
         text-align: left;
 
@@ -61,14 +62,20 @@ export const StyledLabel = styled.label`
 `
 
 export const StyledValue = styled.div`
-    font-size: 20px;
+    font-size: 16px;
     margin-right: 10px;
     min-width: 80px;
     max-width: 100px;
     text-align: center;
-    border: 1px solid lightgrey;
+
     border-radius: 6px;
     margin: 0 8px;
+    height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    color: #0088ff;
+    font-weight: bold;
     
 `
 
@@ -83,7 +90,6 @@ export const InputContainer = styled.div`
     border-radius: 2px;
     position: relative;
     margin: 4px 0;
-    height: 60px;
     &:nth-child(odd) {
         
         ${StyledIcon} {

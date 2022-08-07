@@ -15,6 +15,7 @@ import {
 } from 'chart.js';
 import { Bubble, Scatter } from 'react-chartjs-2';
 import { getSkydiverData } from "../utils/getSkydiverData";
+import { wrap } from "module";
 
 var randomColor = require('randomcolor'); // import the script
 
@@ -41,13 +42,12 @@ export type Dataset = {
 
 export const MainContentContainer = styled.div`
 width: 100%;
-
-height: 70vh;
+height: 68vh;
 position:relative;
 overflow: hidden;
 background: white;
-border: 1px solid lightgrey;
-padding: 24px;
+
+
 box-sizing: border-box;
 border-radius: 6px;
  
@@ -62,7 +62,7 @@ export const MainContent = () => {
         AppContext.getProperties.skydiversParameters.forEach((skydiver, index) => {
             const horizontalStartingPoint = index * horizontalSeparationDistance;
             const skydiverId = index + 1;
-            const color: string[] = ['blue', 'red', 'black', 'yellow', 'pink', "green", 'orange', 'brown', 'grey', "purple"]
+            const color: string[] = ['#023caf', '#DD482D', '#c9940c', '#00de81', '#0F6988', "#00ADBE", 'orange', 'brown', 'grey', "purple"]
             datasets.push(
                 {
                     label: `${skydiver.name} ${skydiverId}`,
@@ -93,11 +93,15 @@ export const MainContent = () => {
             legend: {
                 position: 'top' as const,
                 align: 'center' as const,
-                backgroundColor: "red",
+                display: false,
                 labels: {
-                    color: "black",
+                    usePointStyle: true,
+                    align: "center",
+                    color: "grey",
                     backgroundColor: "red",
                     borderColor: "blue",
+                    boxWidth: 200,
+                    padding: 10,
                 }
             },
             title: {
@@ -151,10 +155,20 @@ export const MainContent = () => {
 
     console.log(skydiversDatasets)
 
+    const LegendElements = skydiversDatasets.datasets.map(skydiver => {
+        return <div style={{
+            color: skydiver.backgroundColor, boxShadow: "2px 2px 4px grey", marginTop: "8px", margin: "4px", borderRadius: "4px", minWidth: "4%", height: "20px", padding: "10px", display: "flex", alignItems: "center", border: `2px solid ${skydiver.backgroundColor}`
+        }}> {skydiver.label}</div >
+    })
+
     return (
-        < MainContentContainer  >
-            <Scatter options={options} data={skydiversDatasets} />
-        </MainContentContainer >
+        <>
+            <div style={{ display: "flex", margin: "16px 0", flexWrap: "wrap", width: "93vw", justifyContent: "flex-start" }}>{LegendElements}</div>
+            < MainContentContainer  >
+
+                <Scatter options={options} data={skydiversDatasets} />
+            </MainContentContainer >
+        </>
     )
 
 }

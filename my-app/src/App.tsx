@@ -86,7 +86,8 @@ export const AppContainer = styled.div`
   justify-content: center;
   padding: 16px;
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
+  overflow:hidden;
   @media ${devices.mobile} {
     flex-direction: column;
   }

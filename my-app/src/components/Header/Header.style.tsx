@@ -7,7 +7,7 @@ width: 80px;
 height: 80px;
 border-radius: 50%;
 font-size: 40px;
-background-color: #00bde3;
+background-color: #0088ff;
 padding: 8px;
 color:white;
 box-shadow: 4px 4px 8px grey;
@@ -16,6 +16,18 @@ margin-right: 50px;
 @media ${devices.mobile} {
     display: none;
   }
+
+`
+
+export const StyledTextLogo = styled.div`
+
+font-size: 50px;
+color: #0088ff;
+padding: 0px;
+margin-right: 50px;
+
+font-family: 'Monoton'
+
 
 `
 
@@ -57,10 +69,10 @@ export const ComputedDataContainer = styled.div`
 
     display: flex;
     justify-content: space-evenly;
-    width: 30%;
-    align-items:center;
+    width: 20%;
+    align-items:space-between;
     color: black;
-    height: 100%;
+    height: max-content;
     flex-wrap: wrap;
 
     @media ${devices.mobile} {
@@ -79,14 +91,14 @@ export const StyledKeyInfoLabel = styled.div`
     max-width: 100%;
     align-items: center;
     justify-content: flex-start;
-    background: #b6efff27;
-    border-left:1px solid lightgrey;;
-    min-width: 180px;
+    border-right:1px solid lightgrey;
+    padding: 0 8px 0 8px;
+    min-width: 100px;
     height: 50px;
     font-size: 0.9rem;
-    padding: 0 24px;
-    margin-left: 24px;
-    text-align:left;
+    text-align:right;
+
+
     @media ${devices.mobile} {
     width: 30%;
     min-width: 140px;
@@ -105,12 +117,14 @@ export const StyledKeyInfoValue = styled.div`
     align-items: center;
     justify-content: flex-start;
     background: #ffffff2e;
-    border: 1px solid lightgrey;;
     border-radius: 4px;
-    padding: 4px;
-    margin-left: 8px;
     height: 20px;
     font-size: 12px;
+    width: 100px;
+    margin-left: 4px;
+    @media ${devices.mobile} {
+     font-size:16px;
+    }
 `
 
 export const StyledKeyValueLabelContainer = styled.div`
@@ -123,17 +137,16 @@ export const StyledKeyValueLabelContainer = styled.div`
 
 export const StyledKeyInfoIcon = styled(FontAwesomeIcon)`
 display: flex;
-width: fill-available;
 align-items: center;
 justify-content: center;
-background: #f8f8f8;
 border: 1px solid transparent;
 border-radius: 2px;
 margin: 4px 0;
-width: 35px;
+margin-left: 10px;
+width: 20px;
 color: #0095c3;
 font-size: 20px;
-margin-left: 24px
+padding: 16px;
 
 `
 
@@ -143,8 +156,6 @@ width: fill-available;
 align-items: center;
 justify-content: space-between;
 background: #f8f8f8;
-
-background: #ffffff;
 border-radius: 50%;
 margin: 4px 0;
 width: 20px;
@@ -172,16 +183,39 @@ flex-wrap: wrap;
 width: fill-available;
 align-items: center;
 justify-content: flex-start;
-background: #f8f8f8;
-border: 1px solid lightgrey;
 overflow: hidden;
 border-radius: 6px;
 margin: 4px 0;
-height: 56px;
-width: 90%;
+height: max-content;
 @media ${devices.mobile} {
     width: 100%;
     flex-wrap: nowrap;
 }
+
+
+`
+
+export const StyledAlertMessage = styled.div`
+display: flex;
+flex-wrap: wrap;
+width: fill-available;
+align-items: center;
+justify-content: flex-start;
+overflow: hidden;
+
+margin: 4px 0;
+height: max-content;
+text-align: justify;
+width: 40%;
+font-size: 13px;
+color:black;
+border-left: 2px solid red;
+padding: 8px;
+
+@media ${devices.mobile} {
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
 
 `
