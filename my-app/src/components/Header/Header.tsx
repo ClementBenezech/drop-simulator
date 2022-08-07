@@ -19,10 +19,10 @@ export const Header = () => {
         <S.StyledLogo icon={faParachuteBox} />
         <S.InputsContainer>
 
-            <InputWithLabel icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
-            <InputWithLabel icon={faClockFour} label="Temps entre les départs (s)" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
-            <InputWithLabel icon={faGaugeHigh} label="Vitesse Air de l'avions (m/s)" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
-            <InputWithLabel icon={faWind} label="Vitesse du vent au larguage (m/s)" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
+            <InputWithLabel min={1} max={20} unit="" icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
+            <InputWithLabel min={0} max={50} unit="Secs" icon={faClockFour} label="Temps entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
+            <InputWithLabel min={0} max={50} unit="m/s" icon={faGaugeHigh} label="Vitesse Air de l'avions" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
+            <InputWithLabel min={0} max={50} unit="m/s" icon={faWind} label="Vitesse du vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
 
         </S.InputsContainer>
         <S.ComputedDataContainer>

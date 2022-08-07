@@ -2,24 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
 
 export const StyledInput = styled.input`
-    width: 30px;
+    width: 200px;
     border: none;
     border: 1px solid transparent;
 
     transition: 150ms border, 150ms color;
     color: #808080;
     text-align:center;
-    &:hover {
-
-            border-bottom: 1px solid #0ed7ff;
-            border-right: 1px solid #0ed7ff;
-        }
-
-    &:focus {
-        box-shadow: 1px 1px 2px grey;
-        color: #0e93ff;
-        outline: none;
-    }
 `
 
 export const StyledIcon = styled(FontAwesomeIcon)`
@@ -37,10 +26,22 @@ export const StyledEditIcon = styled(FontAwesomeIcon)`
 
 
 export const StyledLabel = styled.label`
+    font-size: 16px;
+    margin-right: 10px;
+    width: 50%;
+    text-align: left;
+`
+
+export const StyledValue = styled.div`
     font-size: 20px;
     margin-right: 10px;
-    width: 65%;
-    text-align: left;
+    min-width: 80px;
+    max-width: 100px;
+    text-align: center;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    margin: 0 8px;
+    
 `
 
 export const InputContainer = styled.div`
@@ -62,7 +63,7 @@ export const InputContainer = styled.div`
     }
     &:hover {
         background: white;
-        border: 1px solid #0ed7ff;
+
         ${StyledInput} {
             color: #0e93ff;
             border-bottom: 1px solid #0ed7ff;

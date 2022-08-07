@@ -111,7 +111,6 @@ function App() {
       <AppGlobalContext.Provider value={{ getProperties: { dropsByRun, timeBetweenDrops, skydiversCollection, windGradientCollection, planeAirSpeedUponExit, frontWindVectorUponExit }, setProperties: { setDropsByRun, setTimeBetweenDrops, setSkydiversCollection, setWindGradientCollection, setPlaneAirSpeedUponExit, setFrontWindVectorUponExit } }}>
         <Header />
         <MainContent />
-        <Footer></Footer>
       </AppGlobalContext.Provider>
     </AppContainer>
   );
