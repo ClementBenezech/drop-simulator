@@ -121,7 +121,6 @@ export const StyledOkIcon = styled(FontAwesomeIcon)`
     align-items: center;
     justify-content: space-between;
     background: #f8f8f8;
-
     background: #ffffff;
     border-radius: 50%;
     margin: 4px 0;
