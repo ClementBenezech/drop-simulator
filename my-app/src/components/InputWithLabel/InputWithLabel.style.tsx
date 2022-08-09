@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { devices } from "../../utils/sizes"
 
 export const StyledInput = styled.input`
-    width: 200px;
+    min-width: 100px;
     border: none;
     border: 1px solid transparent;
     position:relative;
@@ -12,28 +12,39 @@ export const StyledInput = styled.input`
     text-align:center;
   
     @media ${devices.mobile} {
-        position:absolute;
-        top:26px;
-        left:64px;
-        max-width: 45vw;
+        width: 95%;
     }
 `
 
 export const StyledIcon = styled(FontAwesomeIcon)`
     color: #2a9bfd;
-    width: 10%;
     margin: 0 4px;
     margin-right: 0px;
     box-sizing: border-box;
-    height: 30px;
-        width: 30px;
-        padding: 8px;
+    height: 20px;
+    width: 20px;
+    padding: 8px;
+    font-size: 5px;
     @media ${devices.mobile} {
-        font-size: 20px;
+        font-size: 10px;
+        height: 20px;
+        width: 20px;
+        padding: 2px;
         background: #fefefe;
         border-radius: 50%;
         box-shadow: 2px 2Px 8Px #d2d2d2;
+        display:none;
     }
+`
+
+export const SliderAndLabelContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    @media ${devices.mobile} {
+        width: 100%;
+    }
+
 `
 
 export const StyledEditIcon = styled(FontAwesomeIcon)`
@@ -45,45 +56,49 @@ export const StyledEditIcon = styled(FontAwesomeIcon)`
 
 
 export const StyledLabel = styled.label`
-    font-size: 16px;
+    font-size: 14px;
     color: #2a2a2ad6;
     margin-right: 10px;
-    width: 80%;
+    min-width: 100%;
     text-align: left;
+    padding-top: 3px;
     @media ${devices.mobile} {
-        font-size: 14px;
-        position:absolute;
-        top:8px;
-        left:19%;
-        width: 58%;
-        text-align: left;
-
+        font-size: 12px;
+        text-align: center;
     }
 `
 
 export const StyledValue = styled.div`
     font-size: 16px;
     margin-right: 10px;
-    min-width: 80px;
-    max-width: 100px;
     text-align: center;
-
     border-radius: 6px;
     margin: 0 8px;
+    padding: 4px 0;
     height: 100%;
     display:flex;
     align-items:center;
     justify-content: center;
     color: #0088ff;
     font-weight: bold;
+    width: 30%;
+    @media ${devices.mobile} {
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+        height: 12px;
+
+    }
     
 `
 
 export const InputContainer = styled.div`
     display: flex;
+    height: 32px;
     width: fill-available;
     align-items: center;
     justify-content: space-between;
+    align-items:center;
     background: #f8f8f8;
     padding: 4px;
     border: 1px solid lightgrey;;
@@ -111,11 +126,12 @@ export const InputContainer = styled.div`
         }
     }
     @media ${devices.mobile} {
-    width: 100%;
+    width: 50%;
     box-sizing: border-box;
-    overflow: hidden;
-    margin-bottom: 6px;
+    margin: 0;
     padding: 0;
-    height: 56px;
+    height: 60px;
+    flex-wrap: wrap;
+    border: none;
   }
 `

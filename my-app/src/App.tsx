@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-
+import { faPersonPraying, faPersonFalling, faPersonWalking, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { Header } from './components/Header/Header';
 import './App.css';
@@ -16,6 +16,9 @@ export type Position = {
 export type SkydiverSpeedParameters = {
   verticalSpeed: number;
   name: string;
+  id: string;
+  icon: IconDefinition;
+  iconRotation: string;
 }
 
 export type WindGradient = {
@@ -48,9 +51,11 @@ export const defaultSkydiversParameters: SkydiverSpeedParameters[] =
   [
     {
       verticalSpeed: 50,
-      name: "Chute à plat",
-    },
-
+      name: "Plat",
+      id: "belly",
+      icon: faPersonFalling,
+      iconRotation: "45deg",
+    }
   ]
 
 
@@ -87,14 +92,17 @@ export const AppContainer = styled.div`
   padding: 16px;
   box-sizing: border-box;
   width: 100%;
-  overflow:hidden;
   @media ${devices.mobile} {
     flex-direction: column;
+    padding: 0;
   }
 `
 export type JumperType = {
   verticalSpeed: number;
   name: string;
+  id: string;
+  icon: IconDefinition;
+  iconRotation: string;
 }
 
 
@@ -102,15 +110,24 @@ function App() {
 
   const jumperTypes: JumperType[] = [{
     verticalSpeed: 100,
-    name: "Chute Verticale",
+    name: "Vertical",
+    id: "vertical",
+    icon: faPersonWalking,
+    iconRotation: "180deg",
   },
   {
     verticalSpeed: 50,
-    name: "Chute à plat",
+    name: "Plat",
+    id: "belly",
+    icon: faPersonFalling,
+    iconRotation: "110deg",
   },
   {
     verticalSpeed: 60,
-    name: "Chute Dos",
+    name: "Dos",
+    id: "back",
+    icon: faPersonPraying,
+    iconRotation: "-110deg",
   },
   ]
 

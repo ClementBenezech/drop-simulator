@@ -16,14 +16,14 @@ export const Header = () => {
     const horizontalRunDistanceIsLong = TotalRunDistance > 2000;
 
     return <S.HeaderContainer>
-        <S.StyledLogo icon={faParachuteBox} />
+        {/*<S.StyledLogo icon={faParachuteBox} />*/}
         <S.StyledTextLogo>EXITS</S.StyledTextLogo>
         <S.InputsContainer>
 
-            <InputWithLabel min={1} max={20} unit="" icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
-            <InputWithLabel min={0} max={50} unit="Secs" icon={faClockFour} label="Temps entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
-            <InputWithLabel min={30} max={60} unit="m/s" icon={faGaugeHigh} label="Vitesse air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
-            <InputWithLabel min={0} max={50} unit="m/s" icon={faWind} label="Vitesse du vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
+            <InputWithLabel min={1} max={10} unit="" icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
+            <InputWithLabel min={0} max={50} unit="Secs" icon={faClockFour} label="Délai entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
+            <InputWithLabel min={30} max={60} unit="m/s" icon={faGaugeHigh} label="Vit. air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
+            <InputWithLabel min={0} max={50} unit="m/s" icon={faWind} label="Vit. Vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
 
         </S.InputsContainer>
         <S.ComputedDataContainer>

@@ -25,7 +25,7 @@ font-size: 50px;
 color: #0088ff;
 padding: 0px;
 margin-right: 50px;
-
+margin-left: 10px;
 font-family: 'Monoton'
 
 
@@ -33,6 +33,7 @@ font-family: 'Monoton'
 
 export const HeaderContainer = styled.div`
   width: 100%;
+  position: relative;
   height: max-content;
   background: transparent;
   display: flex;
@@ -46,22 +47,28 @@ export const HeaderContainer = styled.div`
 export const InputsContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 30%;
+    min-width: max-content;
     align-items:flex-start;
     justify-content: flex-start;
-    height: max-content;
-    padding: 8px 12px;
+    max-height: max-content;
+    padding: 2px 4px;
     border: 1px solid lightgrey;
     margin: 8px;
     border-radius: 6px;
     box-shadow: 4px 16px 46px #c7c7c746;
     @media ${devices.mobile} {
-    width: 100%;
+    min-width: 100vw;
     box-sizing: border-box;
-    overflow: hidden;
     margin: 0;
     padding: 4px 6px;
-    margin-bottom: 16px;
+    position: fixed;
+    bottom: 0;
+    background:white;
+    border-radius: 0 0 4px 4px;
+    z-index: 999;
+    flex-wrap:wrap;
+    flex-direction: row;
+
   }
 `
 
@@ -77,6 +84,7 @@ export const ComputedDataContainer = styled.div`
 
     @media ${devices.mobile} {
     width: 100%;
+    height: min-content;
     box-sizing: border-box;
     overflow: hidden;
     margin: 0;
@@ -106,6 +114,7 @@ export const StyledKeyInfoLabel = styled.div`
     overflow: hidden;
     margin: 0;
     padding: 0 8px;
+    height: min-content;
   
   }
 
@@ -143,10 +152,10 @@ border: 1px solid transparent;
 border-radius: 2px;
 margin: 4px 0;
 margin-left: 10px;
-width: 20px;
+width: 15px;
 color: #0095c3;
-font-size: 20px;
-padding: 16px;
+font-size: 15px;
+padding: 0px;
 
 `
 
@@ -190,6 +199,7 @@ height: max-content;
 @media ${devices.mobile} {
     width: 100%;
     flex-wrap: nowrap;
+    height: min-content;
 }
 
 

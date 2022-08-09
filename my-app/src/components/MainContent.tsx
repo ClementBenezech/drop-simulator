@@ -16,6 +16,9 @@ import {
 import { Bubble, Scatter } from 'react-chartjs-2';
 import { getSkydiverData } from "../utils/getSkydiverData";
 import { wrap } from "module";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { devices } from "../utils/sizes";
 
 var randomColor = require('randomcolor'); // import the script
 
@@ -37,6 +40,8 @@ export type Dataset = {
     borderColor: string,
     backgroundColor: string,
     showLine: boolean;
+    icon: IconDefinition;
+    iconRotation: string;
 }
 
 
@@ -46,11 +51,39 @@ height: 68vh;
 position:relative;
 overflow: hidden;
 background: white;
-
-
 box-sizing: border-box;
 border-radius: 6px;
+@media ${devices.mobile} {
+    margin-bottom: 140px;
+}
  
+`
+
+export const SkydiverLegendLabel = styled.div`
+display: block;
+font-size: 15px;
+@media ${devices.mobile} {
+    display:none;
+}
+`
+
+export const SkydiverLegend = styled.div`
+        width: 9%;
+        height: 25px;
+        box-sizing: border-box;
+        border-radius: 6px;
+        box-shadow: 2px 2px 4px grey;
+        margin-top: 0px;
+        margin: 4px;
+        border-radius: 4px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        @media ${devices.mobile} {
+            width: min-content;
+            padding: 4px;
+        }
 `
 
 
@@ -65,11 +98,13 @@ export const MainContent = () => {
             const color: string[] = ['#023caf', '#DD482D', '#c9940c', '#00de81', '#0F6988', "#00ADBE", 'orange', 'brown', 'grey', "purple"]
             datasets.push(
                 {
-                    label: `${skydiver.name} ${skydiverId}`,
+                    label: `${skydiver.name}`,
                     data: getSkydiverData({ horizontalStartingPoint: horizontalStartingPoint, verticalSpeed: skydiver.verticalSpeed, windSpeed: AppContext.getProperties.frontWindVectorUponExit }),
                     borderColor: color[index],
                     backgroundColor: color[index],
                     showLine: true,
+                    icon: skydiver.icon,
+                    iconRotation: skydiver.iconRotation,
                 }
             )
             console.log(datasets)
@@ -155,17 +190,19 @@ export const MainContent = () => {
 
     console.log(skydiversDatasets)
 
-    const LegendElements = skydiversDatasets.datasets.map(skydiver => {
-        return <div style={{
-            color: skydiver.backgroundColor, boxShadow: "2px 2px 4px grey", marginTop: "8px", margin: "4px", borderRadius: "4px", minWidth: "4%", height: "20px", padding: "10px", display: "flex", alignItems: "center", border: `2px solid ${skydiver.backgroundColor}`
-        }}> {skydiver.label}</div >
+    const LegendElements = skydiversDatasets.datasets.map((skydiver, index) => {
+        return <SkydiverLegend style={{
+            color: skydiver.backgroundColor, border: `2px solid ${skydiver.backgroundColor}`
+        }}>
+            <span>{`#${index + 1}`}</span>
+            <SkydiverLegendLabel>{skydiver.label}</SkydiverLegendLabel>
+            <FontAwesomeIcon style={{ transform: `rotate(${skydiver.iconRotation})`, margin: "8px" }} icon={skydiver.icon} /></SkydiverLegend >
     })
 
     return (
         <>
-            <div style={{ display: "flex", margin: "16px 0", flexWrap: "wrap", width: "93vw", justifyContent: "flex-start" }}>{LegendElements}</div>
+            <div style={{ display: "flex", margin: "8px 0", flexWrap: "wrap", width: "93vw", justifyContent: "space-evenly" }}>{LegendElements}</div>
             < MainContentContainer  >
-
                 <Scatter options={options} data={skydiversDatasets} />
             </MainContentContainer >
         </>

@@ -18,9 +18,14 @@ const InputWithLabel = ({ icon, label, value, onChange, min, max, unit }: InputW
     return (
 
         <S.InputContainer >
+
+
             <S.StyledIcon icon={icon} />
-            <S.StyledLabel>{label}</S.StyledLabel>
-            <S.StyledInput min={min} max={max} value={value} onChange={(event) => onChange(event.target.value)} type="range"></S.StyledInput>
+            <S.SliderAndLabelContainer>
+                <S.StyledLabel>{label}</S.StyledLabel>
+                <S.StyledInput min={min} max={max} value={value} onChange={(event) => onChange(event.target.value)} type="range"></S.StyledInput>
+            </S.SliderAndLabelContainer>
+
             <S.StyledValue>{`${value} ${unit}`}</S.StyledValue>
         </S.InputContainer >)
 }
