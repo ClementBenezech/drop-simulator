@@ -29,6 +29,7 @@ export type WindGradient = {
 
 export type GlobalContext = {
   getProperties: {
+    selectedSpeedUnit: string;
     dropsByRun: number;
     timeBetweenDrops: number;
     planeAirSpeedUponExit: number,
@@ -37,6 +38,7 @@ export type GlobalContext = {
     windGradientCollection: WindGradient[];
   },
   setProperties: {
+    setSelectedSpeedUnit: any;
     setDropsByRun: any;
     setTimeBetweenDrops: any;
     setSkydiversParameters: any;
@@ -61,6 +63,7 @@ export const defaultSkydiversParameters: SkydiverSpeedParameters[] =
 
 export const defaultGlobalContext: GlobalContext = {
   getProperties: {
+    selectedSpeedUnit: "ms",
     dropsByRun: 6,
     timeBetweenDrops: 8,
     planeAirSpeedUponExit: 35,
@@ -74,6 +77,7 @@ export const defaultGlobalContext: GlobalContext = {
       }],
   },
   setProperties: {
+    setSelectedSpeedUnit: () => { return null },
     setDropsByRun: () => { return null },
     setTimeBetweenDrops: () => { return null },
     setSkydiversParameters: () => { return null },
@@ -84,6 +88,8 @@ export const defaultGlobalContext: GlobalContext = {
 }
 
 export const AppGlobalContext = React.createContext<GlobalContext>(defaultGlobalContext);
+
+
 
 export const AppContainer = styled.div`
   display: flex;
@@ -104,6 +110,39 @@ export type JumperType = {
   icon: IconDefinition;
   iconRotation: string;
 }
+
+//Creating the speed unit type.
+export type SpeedUnit = {
+  id: string;
+  abbreviation: string;
+  longName: string;
+  multiplier: number;
+}
+
+//Creating a collection of speedUnits using the above type
+export const speedUnits: SpeedUnit[] = [
+  {
+    id: "ms",
+    abbreviation: "m/s",
+    longName: "Mètres par seconde",
+    multiplier: 1,
+  },
+  {
+    id: "kts",
+    abbreviation: "Kts",
+    longName: "Noeuds",
+    multiplier: 1.94,
+  },
+  {
+    id: "kmh",
+    abbreviation: "Km/h",
+    longName: "Kilomètres par heure",
+    multiplier: 3.6,
+  },
+
+
+]
+//End of speed unit modification
 
 
 function App() {
@@ -131,6 +170,8 @@ function App() {
   },
   ]
 
+
+
   const [dropsByRun, setDropsByRun] = useState<number>(6);
 
   const getSkydiversParameters = useCallback(() => {
@@ -139,10 +180,12 @@ function App() {
       skydiversParameters.push(
         jumperTypes[Math.floor(Math.random() * 3)])
     }
-    console.log(skydiversParameters)
     return skydiversParameters;
   }, [dropsByRun])
 
+
+  // We are creating a state which will contain the current Selected speedunit for the app, initialized to m/s
+  const [selectedSpeedUnit, setSelectedSpeedUnit] = useState<string>('ms')
 
   const [timeBetweenDrops, setTimeBetweenDrops] = useState<number>(8);
   const [planeAirSpeedUponExit, setPlaneAirSpeedUponExit] = useState<number>(35);
@@ -154,7 +197,6 @@ function App() {
     endingAt: 1000,
   }],);
 
-  console.log("Skydiver Data should be here")
 
   useEffect(() => {
     setSkydiversParameters(getSkydiversParameters())
@@ -162,7 +204,7 @@ function App() {
 
   return (
     <AppContainer>
-      <AppGlobalContext.Provider value={{ getProperties: { dropsByRun, timeBetweenDrops, skydiversParameters, windGradientCollection, planeAirSpeedUponExit, frontWindVectorUponExit }, setProperties: { setDropsByRun, setTimeBetweenDrops, setSkydiversParameters, setWindGradientCollection, setPlaneAirSpeedUponExit, setFrontWindVectorUponExit } }}>
+      <AppGlobalContext.Provider value={{ getProperties: { selectedSpeedUnit, dropsByRun, timeBetweenDrops, skydiversParameters, windGradientCollection, planeAirSpeedUponExit, frontWindVectorUponExit }, setProperties: { setSelectedSpeedUnit, setDropsByRun, setTimeBetweenDrops, setSkydiversParameters, setWindGradientCollection, setPlaneAirSpeedUponExit, setFrontWindVectorUponExit } }}>
         <Header />
         <MainContent />
       </AppGlobalContext.Provider>

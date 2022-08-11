@@ -3,6 +3,8 @@ import { AppGlobalContext } from "../../App"
 import InputWithLabel from "../InputWithLabel/InputWithLabel"
 import * as S from "./Header.style"
 import { faPeopleGroup, faClockFour, faGaugeHigh, faWind, faArrowsLeftRight, faExclamationTriangle, faFlagCheckered, faSkull, faCheck, faPlane, faParachuteBox } from '@fortawesome/free-solid-svg-icons'
+//Importing speed units
+import { speedUnits } from "../../App"
 
 export const Header = () => {
     const AppContext = useContext(AppGlobalContext)
@@ -14,24 +16,42 @@ export const Header = () => {
     const horizontalSeparationDistanceIsTooShort = horizontalSeparationDistance < 250;
     const horizontalSeparationDistanceIsFreakingDangerous = horizontalSeparationDistance <= 200;
     const horizontalRunDistanceIsLong = TotalRunDistance > 2000;
+    //Defining current Speed Unit object to be able to use properties
+    const currentSpeedUnit = speedUnits.find(unit => unit.id === AppContext.getProperties.selectedSpeedUnit) || speedUnits[0];
+
+    /*Generate Buttons to allow change of selected unit*/
+    const SpeedSelectionButtons: JSX.Element[] = speedUnits.map(speedUnit => {
+        const isThisTheCurrentUnit: boolean = speedUnit.id === AppContext.getProperties.selectedSpeedUnit;
+        const color: string = isThisTheCurrentUnit ? "#0088ff" : "grey";
+        const speedUnitSelectionButton: JSX.Element = <S.SpeedUnitSelectorButton style={{ color: color, border: `2px solid ${color}` }} onClick={() => AppContext.setProperties.setSelectedSpeedUnit(speedUnit.id)}>{speedUnit.abbreviation}</S.SpeedUnitSelectorButton>
+        return speedUnitSelectionButton
+    })
 
     return <S.HeaderContainer>
         {/*<S.StyledLogo icon={faParachuteBox} />*/}
+
         <S.StyledTextLogo>EXITS</S.StyledTextLogo>
+
+        {/*Put the buttons inside a container*/}
+        <S.SpeedUnitSelectorContainer>
+            {SpeedSelectionButtons}
+        </S.SpeedUnitSelectorContainer>
+
         <S.InputsContainer>
 
-            <InputWithLabel min={1} max={10} unit="" icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
-            <InputWithLabel min={0} max={50} unit="Secs" icon={faClockFour} label="Délai entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
-            <InputWithLabel min={30} max={60} unit="m/s" icon={faGaugeHigh} label="Vit. air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
-            <InputWithLabel min={0} max={50} unit="m/s" icon={faWind} label="Vit. Vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
+            <InputWithLabel min={1} max={10} unit={{ abbreviation: "", multiplier: 1 }} icon={faPeopleGroup} label="Nombre de départs" value={AppContext.getProperties.dropsByRun} onChange={AppContext.setProperties.setDropsByRun} />
+            <InputWithLabel min={0} max={50} unit={{ abbreviation: "Secs", multiplier: 1 }} icon={faClockFour} label="Délai entre les départs" value={AppContext.getProperties.timeBetweenDrops} onChange={AppContext.setProperties.setTimeBetweenDrops} />
+            <InputWithLabel min={30} max={60} unit={currentSpeedUnit} icon={faGaugeHigh} label="Vit. air de l'avion" value={AppContext.getProperties.planeAirSpeedUponExit} onChange={AppContext.setProperties.setPlaneAirSpeedUponExit} />
+            <InputWithLabel min={0} max={50} unit={currentSpeedUnit} icon={faWind} label="Vit. Vent au larguage" value={AppContext.getProperties.frontWindVectorUponExit} onChange={AppContext.setProperties.setFrontWindVectorUponExit} />
 
         </S.InputsContainer>
+
         <S.ComputedDataContainer>
             <S.StyledKeyInfoContainer>
                 <S.StyledKeyInfoIcon icon={faPlane} />
                 <S.StyledKeyValueLabelContainer>
                     <S.StyledKeyInfoLabel>{`V/sol-Avion: `}</S.StyledKeyInfoLabel>
-                    <S.StyledKeyInfoValue>{`${groundSpeedDuringDrop} m/s`}</S.StyledKeyInfoValue>
+                    <S.StyledKeyInfoValue>{`${groundSpeedDuringDrop * currentSpeedUnit.multiplier} ${currentSpeedUnit.abbreviation}`}</S.StyledKeyInfoValue>
                 </S.StyledKeyValueLabelContainer>
             </S.StyledKeyInfoContainer>
             <S.StyledKeyInfoContainer>

@@ -31,6 +31,33 @@ font-family: 'Monoton'
 
 `
 
+export const SpeedUnitSelectorContainer = styled.div`
+    padding: 8px;
+    @media ${devices.mobile} {
+      padding: 0;
+      margin: 0;
+      position: relative;
+      top: -3px;
+    }
+`
+
+export const SpeedUnitSelectorButton = styled.button`
+    padding: 6px;
+    margin: 2px;
+    background: white;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px lightgrey;
+    &:hover {
+      background-color: #f5fcff;
+      border: 2px solid limegreen !important;
+    }
+    @media ${devices.mobile} {
+      height: 36px;
+      width: 50px;
+      margin: 0 2px;;
+    } 
+`
+
 export const HeaderContainer = styled.div`
   width: 100%;
   position: relative;
@@ -38,6 +65,7 @@ export const HeaderContainer = styled.div`
   background: transparent;
   display: flex;
   align-items:center;
+  justify-content: space-between;
   font-family:"Raleway";
   @media ${devices.mobile} {
     flex-wrap: wrap;
