@@ -51,7 +51,7 @@ export const Header = () => {
                 <S.StyledKeyInfoIcon icon={faPlane} />
                 <S.StyledKeyValueLabelContainer>
                     <S.StyledKeyInfoLabel>{`V/sol-Avion: `}</S.StyledKeyInfoLabel>
-                    <S.StyledKeyInfoValue>{`${groundSpeedDuringDrop * currentSpeedUnit.multiplier} ${currentSpeedUnit.abbreviation}`}</S.StyledKeyInfoValue>
+                    <S.StyledKeyInfoValue>{`${Math.round(groundSpeedDuringDrop * currentSpeedUnit.multiplier)} ${currentSpeedUnit.abbreviation}`}</S.StyledKeyInfoValue>
                 </S.StyledKeyValueLabelContainer>
             </S.StyledKeyInfoContainer>
             <S.StyledKeyInfoContainer>
